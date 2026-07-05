@@ -3,6 +3,11 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+venv/
+__pycache__/
+*.pyc
+beautify_with_jess.db
+
 # C extensions
 *.so
 
