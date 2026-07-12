@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--- this makes the website display well on every device not just pc -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beautify With Jess</title>
+
+    <!--- url_for() finds style.css in static folder, does not work if just href=style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Beautify With Jess</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/booking">Book Now</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Enhancing Your Natural Beauty</h2>
+        <p>
+            Welcome to Beautify With Jess. We offer high-quality beauty services
+            including lash extensions, brow treatments and professional makeup
+            in a relaxing and welcoming environment.
+        </p>
+        <p>
+            Browse our services, view our gallery, or book your next appointment
+            online.
+        </p>
+
+        <a href="/booking">
+            <button>Book Now</button>
+        </a>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Beautify With Jess</p>
+    </footer>
+
+</body>
+</html>
