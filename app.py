@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 DATABASE = "beautify_with_jess.db"
 
-# Service: Price,
+# The layout for this is as follows... Service: Price,
 services = {
     "Classic Lashes": 80,
     "Hybrid Lashes": 95,
@@ -16,14 +16,60 @@ services = {
     "Makeup": 90
 }
 
-
-# ---------------------------------
 # Create the database and tables
-# ---------------------------------
+def init_db():
+
+    #Connect to database & make enquiries table
+    conn = sqlite3.connect('enquiries.db')
+    cursor = conn.cursor()
+
+    # Create the enquiries table if it does not already exist
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS enquiries (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            message TEXT NOT NULL
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+@app.route('/submit', methods=['POST'])
+def submit_enquiry():
+    # Get data using the 'name' attributes from HTML form
+    name = request.form.get('name')
+    email = request.form.get('email')
+    message = request.form.get('message')
+
+    #This opens the connection and auto-closes it when finished
+    with sqlite3.connect('enquiries.db') as conn:
+        cursor = conn.cursor()
+        
+        #Create the table here so it exists
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS enquiries (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL,
+                message TEXT NOT NULL
+            )
+        ''')
+        
+        #Insert the data
+        cursor.execute(
+            "INSERT INTO enquiries (name, email, message) VALUES (?, ?, ?)",
+            (name, email, message)
+        )
+        conn.commit()
+
+    return "Thank you! Your enquiry has been received."
+
+# Create the database and tables
 def create_database():
 
     # Connect to the database
-    connection = sqlite3.connect(DATABASE)
+    connection = sqlite3.connect('beautify_with_jess.db')
     cursor = connection.cursor()
 
     # Create the bookings table if it does not already exist
@@ -38,56 +84,35 @@ def create_database():
             booking_time TEXT NOT NULL
         )
     """)
-
-    # Create the enquiries table if it does not already exist
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS enquiries (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT NOT NULL,
-            message TEXT NOT NULL
-        )
-    """)
-
     connection.commit()
     connection.close()
 
 
-# ---------------------------------
 # Home Page
-# ---------------------------------
 @app.route("/")
 def index():
     return render_template("index.html")
 
 
-# ---------------------------------
 # Services Page
-# ---------------------------------
 @app.route("/services")
 def services_page():
     return render_template("services.html", services=services)
 
 
-# ---------------------------------
 # Gallery Page
-# ---------------------------------
 @app.route("/gallery")
 def gallery():
     return render_template("gallery.html")
 
 
-# ---------------------------------
 # Booking Page
-# ---------------------------------
 @app.route("/booking")
 def booking():
     return render_template("booking.html", services=services)
 
 
-# ---------------------------------
-# Save a booking to the database
-# ---------------------------------
+# Saves a booking to the database
 @app.route("/add_booking", methods=["POST"])
 def add_booking():
 
@@ -125,25 +150,19 @@ def add_booking():
     return redirect("/confirmation")
 
 
-# ---------------------------------
 # Confirmation Page
-# ---------------------------------
 @app.route("/confirmation")
 def confirmation():
     return render_template("confirmation.html")
 
 
-# ---------------------------------
 # Contact Page
-# ---------------------------------
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
 
 
-# ---------------------------------
 # Save an enquiry to the database
-# ---------------------------------
 @app.route("/add_enquiry", methods=["POST"])
 def add_enquiry():
 

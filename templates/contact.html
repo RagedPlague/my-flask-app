@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--- this makes the website display well on every device not just pc -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beautify With Jess</title>
+
+    <!--- url_for() finds style.css in static folder, does not work if just href=style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Frequently Asked Questions</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/booking">Book Now</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+    <br>
+
+    <!-- Creates a collapsible box-->
+    <details>
+
+        <!-- Summary is the text that is written on the box when it's unopened -->
+        <summary>Are there age requirements for services?</summary>
+
+        <!-- The text that appears under the collapsible box when opened-->
+        <p>All services are available for people over 12 years.</p>
+        <p>Parental consent is required for any clients under the age of 16 years.</p>
+    
+    </details>
+
+    <details>
+        <summary>How long will results last?</summary>
+        <p>Varies by service, typically...</p>
+        <p>Gel Manicure / Nails: 2-3 weeks</p>
+        <p>Acrylic Nails: 2-4 weeks</p>
+        <p>Eyebrow Waxing: 3-6 weeks</p>
+        <P>Brow and Lash tints: 3-6 weeks</P>
+        <p>Lash Lifts: 6-8 weeks</p>
+
+    </details>
+
+    <details>
+        <summary>What is your return / refund policy?</summary>
+        <p>We offer a 3 day return policy for UNOPENED products.</p>
+        <p>We DO NOT offer refunds for beauty services.</p>
+
+    </details>
+
+    <details>
+        <summary>What is your cancellation policy?</summary>
+        <p>You must provide at least 24 hours notice before an appointment if you plan to cancel.</p>
+        <p>Deposits are forfeited following failure to show up to a booked appointment.</p>
+
+    </details>
+
+    <details>
+        <summary>Do you take walk-ins?</summary>
+        <p>Yes, but keep in mind you may be waiting a while for an opening in the schedule.</p>
+
+    </details>
+
+    <form action="/submit" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="message">Type your enquiry here:</label>
+        <textarea id="message" name="message" rows="6" cols="40"></textarea>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
