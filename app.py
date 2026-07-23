@@ -56,14 +56,16 @@ def submit_enquiry():
             )
         ''')
         
-        #Insert the data
+        # Insert the data
         cursor.execute(
             "INSERT INTO enquiries (name, email, message) VALUES (?, ?, ?)",
             (name, email, message)
         )
         conn.commit()
 
-    return "Thank you! Your enquiry has been received."
+    # Reloads webpage before adding text so the text stays on the webpage
+    # without taking you to a seperate, blank webpage
+    return render_template("contact.html", success="Thank you! Your enquiry has been received.")
 
 # Create the database and tables
 def create_database():
@@ -162,33 +164,10 @@ def contact():
     return render_template("contact.html")
 
 
-# Save an enquiry to the database
-@app.route("/add_enquiry", methods=["POST"])
-def add_enquiry():
-
-    # Retrieve the customer's enquiry
-    name = request.form["name"]
-    email = request.form["email"]
-    message = request.form["message"]
-
-    # Connect to the database
-    connection = sqlite3.connect(DATABASE)
-    cursor = connection.cursor()
-
-    # Insert the enquiry into the enquiries table
-    cursor.execute("""
-        INSERT INTO enquiries
-        (name, email, message)
-
-        VALUES (?, ?, ?)
-    """, (name, email, message))
-
-    connection.commit()
-    connection.close()
-
-    return redirect("/")
-
-
+# Meet Jess Page
+@app.route("/meetjess")
+def meetjess():
+    return render_template("meetjess.html")
 
 if __name__ == "__main__":
     create_database()

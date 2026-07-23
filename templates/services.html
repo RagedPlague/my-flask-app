@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--- this makes the website display well on every device not just pc -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beautify With Jess</title>
+
+    <!--- url_for() finds style.css in static folder, does not work if just href=style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/booking">Book Now</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/meetjess">Meet Jess</a></li>
+            </ul>
+        </nav>
+    </header>
+    <br>

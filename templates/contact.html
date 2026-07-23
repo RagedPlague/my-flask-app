@@ -15,16 +15,18 @@
 
 <body>
     <header>
-        <h1>Frequently Asked Questions</h1>
         <nav>
-            <a href="/">Home</a>
-            <a href="/services">Services</a>
-            <a href="/gallery">Gallery</a>
-            <a href="/booking">Book Now</a>
-            <a href="/contact">Contact</a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/booking">Book Now</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/meetjess">Meet Jess</a></li>
+            </ul>
         </nav>
     </header>
-    <br>
+    <h1>Frequently Asked Questions</h1>   
 
     <!-- Creates a collapsible box-->
     <details>
@@ -69,6 +71,8 @@
 
     </details>
 
+    <h1>Question still not answered?</h1>
+    <h2>Enquire here:</h2>
     <form action="/submit" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name"><br><br>
@@ -76,10 +80,19 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br><br>
 
-        <label for="message">Type your enquiry here:</label>
-        <textarea id="message" name="message" rows="6" cols="40"></textarea>
+        <label for="message">Type your enquiry here:</label><br><br>
+        <textarea id="message" name="message" rows="6" cols="40"></textarea><br><br>
         
         <button type="submit">Submit</button>
+
+        {% if success %}
+        <p>{{ success }}</p>
+        {% endif %}
+        
     </form>
+
+    <footer>
+        <p>© 2026 Beautify With Jess</p>
+    </footer>
 
 </body>

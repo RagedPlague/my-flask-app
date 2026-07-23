@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--- this makes the website display well on every device not just pc -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beautify With Jess</title>
+
+    <!--- url_for() finds style.css in static folder, does not work if just href=style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!-- Header appears at top of screen -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/booking">Book Now</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/meetjess">Meet Jess</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-container">
+
+            <!-- Keeps text and image seperate -->
+            <div class="text-side">
+                <h1>Jessica Finlayson</h1>
+                <h3>Business Owner</h3>
+                <p>
+                    Jess is a passionate beauty therapist who is dedicated to helping her clients look and feel their best. Having completed her Certificate III in Beauty Services, she is building her skills and experience while providing high-quality treatments at home in a friendly and welcoming environment. <br><br>
+                    She specialises in lash extensions, lash lifts, brow treatments, and makeup. Jess is committed to using quality products and ensuring every client has a comfortable and enjoyable experience. <br><br>
+                    Whether clients are preparing for a special event or simply treating themselves, Jess is able to provide  a personalised service and beautiful results that leave them feeling confident and refreshed.
+                </p>
+                <h2>Email: 26finje@goodnews.vic.edu.au</h2>
+                <h2>Phone: +614XXXXXXXX</h2>
+            </div>
+            
+            <img src="{{ url_for('static', filename='jess.jpg') }}" class="jess" width="300" length="300">
+        </div>
+    </main>
+
+    <!-- Footer appears at bottom of screen -->
+    <footer>
+        <p>© 2026 Beautify With Jess</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+/* 
+-----------------
+NAVBAR
+-----------------
+*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #d9a6a3;
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #b76e79;
+}
+
+
+
+/*
+--------------
+WEBPAGES
+--------------
+*/
+body {
+    background-color: #f7d6e0;
+}
+
+footer {
+    background-color: #b76e79;
+}
+
+
+
+/*
+-------------------
+DIVS AND CONTAINERS
+-------------------
+*/
+.content-container {
+    display: flex;
+    justify-content: space-between; /* Pushes text left, image right */
+    padding-top: 20px;
+    padding-right: 250px;
+    gap: 250px /* Adds a gap between the text and the image */
+}
+
+
+
+/*
+-----------
+IMAGES
+-----------
+*/
+.jess {
+    border: 2px solid black;
+    border-radius: 8px;
+}
