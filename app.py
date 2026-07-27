@@ -6,6 +6,7 @@ app = Flask(__name__)
 DATABASE = "beautify_with_jess.db"
 
 # The layout for this is as follows... Service: Price,
+# This data type is a DICTIONARY
 services = {
     "Classic Lashes": 80,
     "Hybrid Lashes": 95,
@@ -16,7 +17,7 @@ services = {
     "Makeup": 90
 }
 
-# Create the database and tables
+# Create the ENQUIRIES database and tables
 def init_db():
 
     #Connect to database & make enquiries table
@@ -35,6 +36,7 @@ def init_db():
     conn.commit()
     conn.close()
 
+# Saves an enquiry to the ENQUIRIES database
 @app.route('/submit', methods=['POST'])
 def submit_enquiry():
     # Get data using the 'name' attributes from HTML form
@@ -67,12 +69,12 @@ def submit_enquiry():
     # without taking you to a seperate, blank webpage
     return render_template("contact.html", success="Thank you! Your enquiry has been received.")
 
-# Create the database and tables
-def create_database():
+# Create the BOOKING database and tables
+def init_db():
 
     # Connect to the database
-    connection = sqlite3.connect('beautify_with_jess.db')
-    cursor = connection.cursor()
+    conn = sqlite3.connect('beautify_with_jess.db')
+    cursor = conn.cursor()
 
     # Create the bookings table if it does not already exist
     cursor.execute("""
@@ -86,8 +88,51 @@ def create_database():
             booking_time TEXT NOT NULL
         )
     """)
-    connection.commit()
-    connection.close()
+    conn.commit()
+    conn.close()
+
+# Saves a booking to the BOOKING database
+@app.route("/add_booking", methods=["POST"])
+def add_booking():
+
+    # Retrieve information entered by the customer
+    customer_name = request.form["customer_name"]
+    phone = request.form["phone"]
+    email = request.form["email"]
+    service = request.form["service"]
+    booking_date = request.form["booking_date"]
+    booking_time = request.form["booking_time"]
+
+    # Connect to the database
+    with sqlite3.connect('beautify_with_jess.db') as conn:
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS bookings (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                customer_name TEXT NOT NULL,
+                phone TEXT NOT NULL,
+                email TEXT NOT NULL,
+                service TEXT NOT NULL,
+                booking_date TEXT NOT NULL,
+                booking_time TEXT NOT NULL
+            )
+        """)
+
+        # Insert the booking into the bookings table
+        cursor.execute(
+            """INSERT INTO bookings
+            (customer_name, phone, email, service, booking_date, booking_time)
+            VALUES (?, ?, ?, ?, ?, ?)""",
+
+            (customer_name, phone, email, service, booking_date, booking_time)
+        )
+
+        conn.commit()
+
+        # Redirect the user to the confirmation page
+        return redirect("/confirmation")
+
 
 
 # Home Page
@@ -113,45 +158,6 @@ def gallery():
 def booking():
     return render_template("booking.html", services=services)
 
-
-# Saves a booking to the database
-@app.route("/add_booking", methods=["POST"])
-def add_booking():
-
-    # Retrieve information entered by the customer
-    customer_name = request.form["customer_name"]
-    phone = request.form["phone"]
-    email = request.form["email"]
-    service = request.form["service"]
-    booking_date = request.form["booking_date"]
-    booking_time = request.form["booking_time"]
-
-    # Connect to the database
-    connection = sqlite3.connect(DATABASE)
-    cursor = connection.cursor()
-
-    # Insert the booking into the bookings table
-    cursor.execute("""
-        INSERT INTO bookings
-        (customer_name, phone, email, service, booking_date, booking_time)
-
-        VALUES (?, ?, ?, ?, ?, ?)
-    """, (
-        customer_name,
-        phone,
-        email,
-        service,
-        booking_date,
-        booking_time
-    ))
-
-    connection.commit()
-    connection.close()
-
-    # Redirect the user to the confirmation page
-    return redirect("/confirmation")
-
-
 # Confirmation Page
 @app.route("/confirmation")
 def confirmation():
@@ -170,5 +176,5 @@ def meetjess():
     return render_template("meetjess.html")
 
 if __name__ == "__main__":
-    create_database()
+    init_db()
     app.run(debug=True)

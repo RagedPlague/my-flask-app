@@ -40,6 +40,9 @@ body {
 
 footer {
     background-color: #b76e79;
+    text-align: center;
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
 }
 
 
@@ -57,6 +60,20 @@ DIVS AND CONTAINERS
     gap: 250px /* Adds a gap between the text and the image */
 }
 
+.contact-section {
+    display: flex; /* Places the FAQ and enquiry sections side-by-side */
+    justify-content: space-between; /* Aligns both sections at the top of the container */
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.faq-container {
+    flex: 1; /* Allows the FAQ section to take up an equal share of the available width */
+}
+
+.enquire-container {
+    flex: 1; /* Allows the Enquiry section to take up an equal share of the available width */
+}
 
 
 /*

@@ -26,70 +26,79 @@
             </ul>
         </nav>
     </header>
-    <h1>Frequently Asked Questions</h1>   
 
-    <!-- Creates a collapsible box-->
-    <details>
+    <div class="contact-section">
 
-        <!-- Summary is the text that is written on the box when it's unopened -->
-        <summary>Are there age requirements for services?</summary>
+        <div class="faq-container">
+            <h1>Frequently Asked Questions</h1>   
 
-        <!-- The text that appears under the collapsible box when opened-->
-        <p>All services are available for people over 12 years.</p>
-        <p>Parental consent is required for any clients under the age of 16 years.</p>
+            <!-- Creates a collapsible box-->
+            <details>
+
+                <!-- Summary is the text that is written on the box when it's unopened -->
+                <summary>Are there age requirements for services?</summary>
+
+                <!-- The text that appears under the collapsible box when opened-->
+                <p>All services are available for people over 12 years.</p>
+                <p>Parental consent is required for any clients under the age of 16 years.</p>
+            
+            </details>
+
+            <details>
+                <summary>How long will results last?</summary>
+                <p>Varies by service, typically...</p>
+                <p>Gel Manicure / Nails: 2-3 weeks</p>
+                <p>Acrylic Nails: 2-4 weeks</p>
+                <p>Eyebrow Waxing: 3-6 weeks</p>
+                <P>Brow and Lash tints: 3-6 weeks</P>
+                <p>Lash Lifts: 6-8 weeks</p>
+
+            </details>
+
+            <details>
+                <summary>What is your return / refund policy?</summary>
+                <p>We offer a 3 day return policy for UNOPENED products.</p>
+                <p>We DO NOT offer refunds for beauty services.</p>
+
+            </details>
+
+            <details>
+                <summary>What is your cancellation policy?</summary>
+                <p>You must provide at least 24 hours notice before an appointment if you plan to cancel.</p>
+                <p>Deposits are forfeited following failure to show up to a booked appointment.</p>
+
+            </details>
+
+            <details>
+                <summary>Do you take walk-ins?</summary>
+                <p>Yes, but keep in mind you may be waiting a while for an opening in the schedule.</p>
+
+            </details>
+        </div>
+
+        <div class="enquire-container">
+            <h1>Question still not answered?</h1>
+            <h2>Enquire here:</h2>
+            <form action="/submit" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="message">Type your enquiry here:</label><br><br>
+                <textarea id="message" name="message" rows="6" cols="40"></textarea><br><br>
+                
+                <button type="submit">Submit</button>
+
+                {% if success %}
+                <p>{{ success }}</p>
+                {% endif %}
+                
+            </form>
+        </div>
+    </div>
     
-    </details>
-
-    <details>
-        <summary>How long will results last?</summary>
-        <p>Varies by service, typically...</p>
-        <p>Gel Manicure / Nails: 2-3 weeks</p>
-        <p>Acrylic Nails: 2-4 weeks</p>
-        <p>Eyebrow Waxing: 3-6 weeks</p>
-        <P>Brow and Lash tints: 3-6 weeks</P>
-        <p>Lash Lifts: 6-8 weeks</p>
-
-    </details>
-
-    <details>
-        <summary>What is your return / refund policy?</summary>
-        <p>We offer a 3 day return policy for UNOPENED products.</p>
-        <p>We DO NOT offer refunds for beauty services.</p>
-
-    </details>
-
-    <details>
-        <summary>What is your cancellation policy?</summary>
-        <p>You must provide at least 24 hours notice before an appointment if you plan to cancel.</p>
-        <p>Deposits are forfeited following failure to show up to a booked appointment.</p>
-
-    </details>
-
-    <details>
-        <summary>Do you take walk-ins?</summary>
-        <p>Yes, but keep in mind you may be waiting a while for an opening in the schedule.</p>
-
-    </details>
-
-    <h1>Question still not answered?</h1>
-    <h2>Enquire here:</h2>
-    <form action="/submit" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="message">Type your enquiry here:</label><br><br>
-        <textarea id="message" name="message" rows="6" cols="40"></textarea><br><br>
-        
-        <button type="submit">Submit</button>
-
-        {% if success %}
-        <p>{{ success }}</p>
-        {% endif %}
-        
-    </form>
 
     <footer>
         <p>© 2026 Beautify With Jess</p>
