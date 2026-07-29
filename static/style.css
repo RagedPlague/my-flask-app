@@ -85,3 +85,112 @@ IMAGES
     border: 2px solid black;
     border-radius: 8px;
 }
+
+/* Hero */
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:60px 10%;
+    gap:50px;
+}
+
+.hero-image img{
+    width:350px;
+    border-radius:10px;
+}
+
+.hero-content{
+    max-width:500px;
+}
+
+.hero-content h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+/* Buttons */
+
+.buttons{
+    display:flex;
+    gap:15px;
+}
+
+.btn,
+.btn-outline{
+    text-decoration:none;
+    padding:12px 28px;
+    border-radius:6px;
+    font-weight:bold;
+}
+
+.btn{
+    background:#b76e79;
+    color:white;
+}
+
+.btn-outline{
+    border:2px solid #b76e79;
+    color:#b76e79;
+}
+
+/* Review */
+
+.review{
+    padding:40px 10%;
+    border-top:2px solid #ddd;
+    border-bottom:2px solid #ddd;
+}
+
+.review-box{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.review-box img{
+    width:120px;
+    border-radius:50%;
+}
+
+.stars{
+    color:gold;
+    font-size:24px;
+}
+
+/* Services */
+
+.services{
+    padding:60px 10%;
+    text-align:center;
+}
+
+.services h2{
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border:2px solid #ddd;
+    border-radius:8px;
+    padding:25px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}

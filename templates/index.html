@@ -3,18 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <!--- this makes the website display well on every device not just pc -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Beautify With Jess</title>
 
-    <!--- url_for() finds style.css in static folder, does not work if just href=style.css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <!-- Header appears at top of screen -->
+
+    <!-- Navigation -->
     <header>
         <nav>
             <ul>
@@ -22,35 +19,102 @@
                 <li><a href="/services">Services</a></li>
                 <li><a href="/gallery">Gallery</a></li>
                 <li><a href="/booking">Book Now</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/enquiry">Contact</a></li>
                 <li><a href="/meetjess">Meet Jess</a></li>
             </ul>
         </nav>
-        <h1>Beautify With Jess</h1>
     </header>
 
-    <main>
-        <h2>Enhancing Your Natural Beauty</h2>
-        <p>
-            Welcome to Beautify With Jess. We offer high-quality beauty services
-            including lash extensions, brow treatments and professional makeup
-            in a relaxing and welcoming environment.
-        </p>
-        <p>
-            Browse our services, view our gallery, or book your next appointment
-            online.
-        </p>
+    <!-- Hero section -->
+    <section class="hero">
 
-        <a href="/booking">
-            <button>Book Now</button>
-        </a>
+        <div class="hero-image">
+            <img src="{{ url_for('static', filename='placeholder.jpg') }}" alt="Beautify With Jess">
+        </div>
 
-    </main>
+        <div class="hero-content">
+            <h1>Enhancing Your Natural Beauty</h1>
 
-    <!-- Footer appears at bottom of screen -->
+            <p>
+                Professional lash extensions, brow services and makeup
+                tailored to help you look and feel your best.
+            </p>
+
+            <div class="buttons">
+                <a href="/booking" class="btn">Book Now</a>
+                <a href="/meetjess" class="btn-outline">Meet Jess</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Review -->
+    <section class="review">
+
+        <div class="review-box">
+
+            <img src="{{ url_for('static', filename='placeholder.jpg') }}" alt="Customer">
+
+            <div>
+                <h2>Jane Doe</h2>
+
+                <p class="stars">★★★★★</p>
+
+                <p>
+                    Absolutely loved my lashes! Jess was so welcoming,
+                    professional and made the whole experience relaxing.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+
+        <h2>Offered Services</h2>
+
+        <div class="service-grid">
+
+            <div class="card">
+                <h3>Classic Lashes</h3>
+                <p>Natural everyday lashes.</p>
+            </div>
+
+            <div class="card">
+                <h3>Hybrid Lashes</h3>
+                <p>Classic and volume blend.</p>
+            </div>
+
+            <div class="card">
+                <h3>Volume Lashes</h3>
+                <p>Full glamorous look.</p>
+            </div>
+
+            <div class="card">
+                <h3>Lash Lift</h3>
+                <p>Lift and curl your natural lashes.</p>
+            </div>
+
+            <div class="card">
+                <h3>Brow Wax</h3>
+                <p>Shape and define brows.</p>
+            </div>
+
+            <div class="card">
+                <h3>Makeup</h3>
+                <p>Professional makeup for any event.</p>
+            </div>
+
+        </div>
+
+    </section>
+
     <footer>
         <p>© 2026 Beautify With Jess</p>
     </footer>
 
 </body>
+
 </html>

@@ -27,3 +27,55 @@
         </nav>
     </header>
     <br>
+    <main>
+
+<h2>Our Services</h2>
+
+{% for service, price in services.items() %}
+
+<div class="service-card">
+
+    <div class="service-image">
+
+        <img src="{{ url_for('static', filename='placeholder.jpg') }}" width="50" length="50">
+
+    </div>
+
+    <div class="service-information">
+
+        <h3>{{ service }}</h3>
+
+        <p>
+            Professional beauty treatment performed by Jess.
+        </p>
+
+    </div>
+
+    <div class="service-price">
+
+        ${{ price }}
+
+    </div>
+
+    <div>
+
+        <a href="/booking">
+            <button>Book Now</button>
+        </a>
+
+    </div>
+</div>
+
+{% endfor %}
+
+</main>
+
+<footer>
+
+<p>© 2026 Beautify With Jess</p>
+
+</footer>
+
+</body>
+
+</html>

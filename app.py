@@ -104,35 +104,51 @@ def add_booking():
     booking_time = request.form["booking_time"]
 
     # Connect to the database
-    with sqlite3.connect('beautify_with_jess.db') as conn:
-        cursor = conn.cursor()
+    conn = sqlite3.connect("beautify_with_jess.db")
+    cursor = conn.cursor()
 
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS bookings (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                customer_name TEXT NOT NULL,
-                phone TEXT NOT NULL,
-                email TEXT NOT NULL,
-                service TEXT NOT NULL,
-                booking_date TEXT NOT NULL,
-                booking_time TEXT NOT NULL
-            )
-        """)
+    # Insert the booking into the bookings table
+    cursor.execute(
+        """INSERT INTO bookings
+        (customer_name, phone, email, service, booking_date, booking_time)
+        VALUES (?, ?, ?, ?, ?, ?)""",
+        (customer_name, phone, email, service, booking_date, booking_time)
+    )
 
-        # Insert the booking into the bookings table
-        cursor.execute(
-            """INSERT INTO bookings
-            (customer_name, phone, email, service, booking_date, booking_time)
-            VALUES (?, ?, ?, ?, ?, ?)""",
+    # Save changes
+    conn.commit()
 
-            (customer_name, phone, email, service, booking_date, booking_time)
-        )
+    # Get the ID of the booking that was just added
+    booking_id = cursor.lastrowid
 
-        conn.commit()
+    # Close the database connection
+    conn.close()
 
-        # Redirect the user to the confirmation page
-        return redirect("/confirmation")
+    # Redirect to the confirmation page for this booking
+    return redirect(f"/confirmation/{booking_id}")
 
+
+# Confirmation page
+@app.route("/confirmation/<int:booking_id>")
+def confirmation(booking_id):
+
+    # Connect to the database
+    conn = sqlite3.connect("beautify_with_jess.db")
+    cursor = conn.cursor()
+
+    # Retrieve the booking with the matching ID
+    cursor.execute(
+        "SELECT * FROM bookings WHERE id = ?",
+        (booking_id,)
+    )
+
+    booking = cursor.fetchone()
+
+    # Close the database connection
+    conn.close()
+
+    # Send the booking data to confirmation.html
+    return render_template("confirmation.html", booking=booking)
 
 
 # Home Page
@@ -156,13 +172,82 @@ def gallery():
 # Booking Page
 @app.route("/booking")
 def booking():
-    return render_template("booking.html", services=services)
 
-# Confirmation Page
-@app.route("/confirmation")
-def confirmation():
-    return render_template("confirmation.html")
+    return render_template(
+        "booking.html",
+        services=services
+    )
 
+
+# Edit Booking Page
+@app.route("/edit_booking/<int:booking_id>")
+def edit_booking(booking_id):
+
+    # Connect to the database
+    conn = sqlite3.connect("beautify_with_jess.db")
+    cursor = conn.cursor()
+
+    # Retrieve the selected booking
+    cursor.execute("""
+        SELECT *
+        FROM bookings
+        WHERE id = ?
+    """, (booking_id,))
+
+    booking = cursor.fetchone()
+
+    conn.close()
+
+    # Open the edit booking page
+    return render_template(
+        "edit_booking.html",
+        booking=booking,
+        services=services
+    )
+
+
+# Update Booking
+@app.route("/update_booking/<int:booking_id>", methods=["POST"])
+def update_booking(booking_id):
+
+    # Retrieve the updated information
+    customer_name = request.form["customer_name"]
+    phone = request.form["phone"]
+    email = request.form["email"]
+    service = request.form["service"]
+    booking_date = request.form["booking_date"]
+    booking_time = request.form["booking_time"]
+
+    # Connect to the database
+    conn = sqlite3.connect("beautify_with_jess.db")
+    cursor = conn.cursor()
+
+    # Update the booking
+    cursor.execute("""
+        UPDATE bookings
+        SET
+            customer_name = ?,
+            phone = ?,
+            email = ?,
+            service = ?,
+            booking_date = ?,
+            booking_time = ?
+        WHERE id = ?
+    """, (
+        customer_name,
+        phone,
+        email,
+        service,
+        booking_date,
+        booking_time,
+        booking_id
+    ))
+
+    conn.commit()
+    conn.close()
+
+    # Return to the confirmation page
+    return redirect(f"/confirmation/{booking_id}")
 
 # Contact Page
 @app.route("/contact")

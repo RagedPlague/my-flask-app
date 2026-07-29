@@ -27,3 +27,36 @@
         </nav>
     </header>
     <br>
+
+    <main>
+
+        <h2>Booking Confirmed!</h2>
+
+        <p>Thank you for your booking. Your appointment details are below.</p>
+
+        <div class="confirmation-box">
+
+            <p><strong>Name:</strong> {{ booking[1] }}</p>
+            <p><strong>Phone:</strong> {{ booking[2] }}</p>
+            <p><strong>Email:</strong> {{ booking[3] }}</p>
+            <p><strong>Service:</strong> {{ booking[4] }}</p>
+            <p><strong>Date:</strong> {{ booking[5] }}</p>
+            <p><strong>Time:</strong> {{ booking[6] }}</p>
+
+        </div>
+
+        <br>
+
+        <a href="/edit_booking/{{ booking[0] }}">
+            <button type="button">Edit Booking</button>
+        </a>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Beautify With Jess</p>
+    </footer>
+
+</body>
+
+</html>
