@@ -33,15 +33,15 @@
 
 {% for service, price in services.items() %}
 
-<div class="service-card">
+<div class="service_card">
 
-    <div class="service-image">
+    <div class="service_image">
 
         <img src="{{ url_for('static', filename='placeholder.jpg') }}" width="50" length="50">
 
     </div>
 
-    <div class="service-information">
+    <div class="service_information">
 
         <h3>{{ service }}</h3>
 
@@ -51,7 +51,7 @@
 
     </div>
 
-    <div class="service-price">
+    <div class="service_price">
 
         ${{ price }}
 

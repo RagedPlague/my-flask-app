@@ -124,7 +124,7 @@ def add_booking():
     # Close the database connection
     conn.close()
 
-    # Redirect to the confirmation page for this booking
+    # Redirect to the confirmation page for this booking, using ID from database
     return redirect(f"/confirmation/{booking_id}")
 
 

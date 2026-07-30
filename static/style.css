@@ -52,7 +52,7 @@ footer {
 DIVS AND CONTAINERS
 -------------------
 */
-.content-container {
+.content_container {
     display: flex;
     justify-content: space-between; /* Pushes text left, image right */
     padding-top: 20px;
@@ -60,18 +60,18 @@ DIVS AND CONTAINERS
     gap: 250px /* Adds a gap between the text and the image */
 }
 
-.contact-section {
+.contact_section {
     display: flex; /* Places the FAQ and enquiry sections side-by-side */
     justify-content: space-between; /* Aligns both sections at the top of the container */
     align-items: flex-start;
     gap: 80px;
 }
 
-.faq-container {
+.faq_container {
     flex: 1; /* Allows the FAQ section to take up an equal share of the available width */
 }
 
-.enquire-container {
+.enquire_container {
     flex: 1; /* Allows the Enquiry section to take up an equal share of the available width */
 }
 
@@ -86,8 +86,12 @@ IMAGES
     border-radius: 8px;
 }
 
-/* Hero */
 
+/* 
+------
+HERO
+------ 
+*/
 .hero{
     display:flex;
     justify-content:space-between;
@@ -96,38 +100,42 @@ IMAGES
     gap:50px;
 }
 
-.hero-image img{
+.hero_image img{
     width:350px;
     border-radius:10px;
 }
 
-.hero-content{
+.hero_content{
     max-width:500px;
 }
 
-.hero-content h1{
+.hero_content h1{
     font-size:42px;
     margin-bottom:20px;
 }
 
-.hero-content p{
+.hero_content p{
     line-height:1.7;
     margin-bottom:30px;
 }
 
-/* Buttons */
 
+/*
+---------
+BUTTONS
+---------
+*/
 .buttons{
     display:flex;
     gap:15px;
 }
 
-.btn,
-.btn-outline{
+.btn, .btn_outline{
     text-decoration:none;
     padding:12px 28px;
     border-radius:6px;
     font-weight:bold;
+    transition: 0.3s;
 }
 
 .btn{
@@ -135,26 +143,34 @@ IMAGES
     color:white;
 }
 
-.btn-outline{
+.btn_outline{
     border:2px solid #b76e79;
     color:#b76e79;
 }
 
-/* Review */
+.btn:hover, .btn_outline:hover {
+    transform:translateY(-5px); /* Moves box up by 5px */
+    box-shadow:0 5px 15px rgba(0,0,0,.15); /* Adds a slight shadow */
+}
 
+/* 
+-----------
+REVIEW BOX
+-----------
+*/
 .review{
     padding:40px 10%;
     border-top:2px solid #ddd;
     border-bottom:2px solid #ddd;
 }
 
-.review-box{
+.review_box{
     display:flex;
     align-items:center;
     gap:30px;
 }
 
-.review-box img{
+.review_box img{
     width:120px;
     border-radius:50%;
 }
@@ -164,8 +180,11 @@ IMAGES
     font-size:24px;
 }
 
-/* Services */
-
+/*
+----------------------
+SERVICES ON INDEX PAGE 
+----------------------
+*/
 .services{
     padding:60px 10%;
     text-align:center;
@@ -176,9 +195,9 @@ IMAGES
     margin-bottom:40px;
 }
 
-.service-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+.service_grid{
+    display:grid; /* Sets up grid format */
+    grid-template-columns:repeat(3,1fr); /* Creates 3 columns, each taking up 1 fraction of available space */
     gap:25px;
 }
 
@@ -190,7 +209,8 @@ IMAGES
     transition:.3s;
 }
 
+/* Card hover transition */
 .card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    transform:translateY(-5px); /* Moves box up by 5px */
+    box-shadow:0 5px 15px rgba(0,0,0,.15); /* Adds a slight shadow */
 }
