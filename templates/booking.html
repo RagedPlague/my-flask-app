@@ -59,16 +59,16 @@
 
         <form action="/add_booking" method="POST">
 
-            <label for="customer_name">Full Name</label>
-            <input type="text" id="customer_name" name="customer_name" required>
+            <label for="customer_name">Full Name:</label>
+            <input type="text" id="customer_name" name="customer_name" placeholder="John Doe" required><br><br>
 
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="^04\d{8}$" placeholder="0412345678" maxlength="10" required><br><br>
 
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required>
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Name@email.com" required><br><br>
 
-            <label for="service">Service</label>
+            <label for="service">Service:</label>
 
             <select id="service" name="service" required>
 
@@ -83,12 +83,12 @@
 
                 {% endfor %}
 
-            </select>
+            </select><br><br>
 
-            <label for="booking_date">Preferred Date</label>
-            <input type="date" id="booking_date" name="booking_date" required>
+            <label for="booking_date">Preferred Date:</label>
+            <input type="date" id="booking_date" name="booking_date" required><br><br>
 
-            <label for="booking_time">Preferred Time</label>
+            <label for="booking_time">Preferred Time:</label>
             <input type="time" id="booking_time" name="booking_time" required>
             <br><br>
 
@@ -98,5 +98,21 @@
     <footer>
         <p>© 2026 Beautify With Jess</p>
     </footer>
+
+    <!-- THIS IS JAVASCRIPT AS HTML DOESNT KNOW WHAT TODAYS DATE IS -->
+    <script>
+
+        // Creates a Date object using today's date and time
+        const tomorrow = new Date();
+
+        // Changes the date to one day after today (tomorrow)
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        // Finds the date input and sets the earliest selectable date
+        document.getElementById("booking_date").min =
+
+            // Converts the date into YYYY-MM-DD format and removes the time
+            tomorrow.toISOString().split("T")[0];
+    </script>
 </body>
 </html>

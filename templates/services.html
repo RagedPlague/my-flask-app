@@ -27,55 +27,45 @@
         </nav>
     </header>
     <br>
+
+    <!-- THIS PAGE IS SIMILAR TO THE "BOOKING" PAGE IN MOCKUPS -->
     <main>
+        <h2>Our Services</h2>
 
-<h2>Our Services</h2>
+        <!-- Loops through the 'services' dictionary
+        getting each service name and price -->
+        {% for service, price in services.items() %}
 
-{% for service, price in services.items() %}
+        <div class="service_card">
+            <div class="service_image">
+                <img src="{{ url_for('static', filename='placeholder.jpg') }}" width="50" length="50">
+            </div>
 
-<div class="service_card">
+            <div class="service_information">
+                <h3>{{ service }}</h3>
+                <p>
+                    Professional beauty treatment performed by Jess.
+                </p>
+            </div>
 
-    <div class="service_image">
+            <div class="service_price">
+                ${{ price }}
+            </div>
 
-        <img src="{{ url_for('static', filename='placeholder.jpg') }}" width="50" length="50">
+            <div>
+                <a href="/booking">
+                    <button>Book Now</button>
+                </a>
+            </div>
+        </div>
 
-    </div>
+        {% endfor %}
 
-    <div class="service_information">
+    </main>
 
-        <h3>{{ service }}</h3>
-
-        <p>
-            Professional beauty treatment performed by Jess.
-        </p>
-
-    </div>
-
-    <div class="service_price">
-
-        ${{ price }}
-
-    </div>
-
-    <div>
-
-        <a href="/booking">
-            <button>Book Now</button>
-        </a>
-
-    </div>
-</div>
-
-{% endfor %}
-
-</main>
-
-<footer>
-
-<p>© 2026 Beautify With Jess</p>
-
-</footer>
+    <footer>
+      <p>© 2026 Beautify With Jess</p>
+    </footer>
 
 </body>
-
 </html>

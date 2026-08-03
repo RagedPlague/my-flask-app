@@ -17,6 +17,7 @@ services = {
     "Makeup": 90
 }
 
+
 # Create the ENQUIRIES database and tables
 def init_db():
 
@@ -35,6 +36,7 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+
 
 # Saves an enquiry to the ENQUIRIES database
 @app.route('/submit', methods=['POST'])
@@ -69,6 +71,7 @@ def submit_enquiry():
     # without taking you to a seperate, blank webpage
     return render_template("contact.html", success="Thank you! Your enquiry has been received.")
 
+
 # Create the BOOKING database and tables
 def init_db():
 
@@ -90,6 +93,7 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+
 
 # Saves a booking to the BOOKING database
 @app.route("/add_booking", methods=["POST"])
@@ -172,7 +176,6 @@ def gallery():
 # Booking Page
 @app.route("/booking")
 def booking():
-
     return render_template(
         "booking.html",
         services=services
@@ -225,7 +228,8 @@ def update_booking(booking_id):
     # Update the booking
     cursor.execute("""
         UPDATE bookings
-        SET
+        SET 
+            -- Replaces [title] with the updated value (which uses '?' as a placeholder)
             customer_name = ?,
             phone = ?,
             email = ?,
