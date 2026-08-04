@@ -27,3 +27,56 @@
         </nav>
     </header>
     <br>
+    
+    <main>
+        <div class="gallery">
+
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='classic_lash.jpg') }}" width="150" height="150">
+            <div class="gallery-info">
+                <h3>Classic Lashes</h3>
+                <p>Fresh classic lash set completed for a client.</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='hybrid_lash.jpg') }}" width="150" height="150">
+            <div class="gallery-info">
+                <h3>Hybrid Lashes</h3>
+                <p>Hybrid lashes with a soft wispy finish.</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='volume_lash.jpg') }}" width="150" height="150">
+            <div class="gallery-info">
+                <h3>Volume Lashes</h3>
+                <p>Full volume set for a glamorous look.</p>
+            </div>
+        </div>
+        
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='lash_lift.jpg') }}" alt="Lash Lift">
+            <div class="gallery-info">
+                <h3>Lash Lift</h3>
+                <p>Natural lash lift enhancing length and curl without extensions.</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='brow_wax.jpg') }}" alt="Brow Wax">
+            <div class="gallery-info">
+                <h3>Brow Wax</h3>
+                <p>Brows professionally shaped to create a clean, defined look.</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='brow_tint.jpg') }}" alt="Brow Tint">
+            <div class="gallery-info">
+                <h3>Brow Tint</h3>
+                <p>Brows tinted to add colour, definition, and a fuller appearance.</p>
+            </div>
+        </div>
+    </div>
+    </main>
