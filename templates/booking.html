@@ -103,7 +103,6 @@
 
     <!-- THIS IS JAVASCRIPT AS HTML DOESNT KNOW WHAT TODAYS DATE IS -->
     <script>
-
         // Creates a Date object using today's date and time
         const tomorrow = new Date();
 
@@ -112,9 +111,13 @@
 
         // Finds the date input and sets the earliest selectable date
         document.getElementById("booking_date").min =
-
-            // Converts the date into YYYY-MM-DD format and removes the time
+        // Converts the date into YYYY-MM-DD format and removes the time
             tomorrow.toISOString().split("T")[0];
+
+        // Sets the latest selectable date to 31 December 2060
+        document.getElementById("booking_date").max =
+            "2060-12-31";
+
     </script>
 </body>
 </html>

@@ -1,63 +1,92 @@
 /* 
------------------
+-----------------------------
 NAVBAR
------------------
+----------------------------- 
 */
+
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #d9a6a3;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #d9a6a3;
 }
 
 ul li {
-  float: left;
+    float: left;
 }
 
 ul li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    display: block;
+    color: #ffffff;
+    font-size: 17px;
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 ul li a:hover {
-  background-color: #b76e79;
+    background-color: #b76e79;
 }
 
 
-
-/*
---------------
+/* 
+-----------------------------
 WEBPAGES
---------------
+----------------------------- 
 */
+
 body {
     background-color: #f7d6e0;
+    color: #6f5b5b;
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
+    font-size: 17px;
+}
+
+h1 {
+    color: #b76e79;
+    font-size: 52px;
+}
+
+h2 {
+    color: #b76e79;
+    font-size: 36px;
+}
+
+h3 {
+    color: #a67c7c;
+    font-size: 24px;
+}
+
+p,
+label,
+li {
+    color: #6f5b5b;
+    font-size: 17px;
 }
 
 footer {
     background-color: #b76e79;
+    color: #ffffff;
     text-align: center;
     font-family: 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 
-
-/*
--------------------
+/* 
+-----------------------------
 DIVS AND CONTAINERS
--------------------
+----------------------------- 
 */
+
 .content_container {
     display: flex;
     justify-content: space-between; /* Pushes text left, image right */
     padding-top: 20px;
     padding-right: 250px;
-    gap: 250px /* Adds a gap between the text and the image */
+    gap: 250px; /* Adds a gap between the text and the image */
 }
 
 .contact_section {
@@ -75,14 +104,13 @@ DIVS AND CONTAINERS
     flex: 1; /* Allows the Enquiry section to take up an equal share of the available width */
 }
 
-.service_image {
-    border-top: 2px solid #b76e79
-}
-/*
------------
+
+/* 
+-----------------------------
 IMAGES
------------
+----------------------------- 
 */
+
 .jess {
     border: 2px solid black;
     border-radius: 8px;
@@ -90,129 +118,155 @@ IMAGES
 
 
 /* 
-------
+-----------------------------
 HERO
------- 
+----------------------------- 
 */
-.hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:60px 10%;
-    gap:50px;
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 10%;
+    gap: 50px;
 }
 
-.hero_image img{
-    width:350px;
-    border-radius:10px;
+.hero_image img {
+    width: 350px;
+    border-radius: 10px;
 }
 
-.hero_content{
-    max-width:500px;
+.hero_content {
+    max-width: 500px;
 }
 
-.hero_content h1{
-    font-size:42px;
-    margin-bottom:20px;
+.hero_content h1 {
+    font-size: 52px;
+    color: #b76e79;
+    margin-bottom: 20px;
 }
 
-.hero_content p{
-    line-height:1.7;
-    margin-bottom:30px;
+.hero_content p {
+    font-size: 18px;
+    color: #6f5b5b;
+    line-height: 1.7;
+    margin-bottom: 30px;
 }
 
 
-/*
----------
+/* 
+-----------------------------
 BUTTONS
----------
+----------------------------- 
 */
-.buttons{
-    display:flex;
-    gap:15px;
+
+.buttons {
+    display: flex;
+    gap: 15px;
 }
 
-.btn, .btn_outline{
-    text-decoration:none;
-    padding:12px 28px;
-    border-radius:6px;
-    font-weight:bold;
+.btn,
+.btn_outline {
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
     transition: 0.3s;
 }
 
-.btn{
-    background:#b76e79;
-    color:white;
+.btn {
+    background: #b76e79;
+    color: white;
 }
 
-.btn_outline{
-    border:2px solid #b76e79;
-    color:#b76e79;
+.btn_outline {
+    border: 2px solid #b76e79;
+    color: #b76e79;
 }
 
-.btn:hover, .btn_outline:hover {
-    transform:translateY(-5px); /* Moves box up by 5px */
-    box-shadow:0 5px 15px rgba(0,0,0,.15); /* Adds a slight shadow */
+.btn:hover,
+.btn_outline:hover {
+    transform: translateY(-5px); /* Moves box up by 5px */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .15); /* Adds a slight shadow */
 }
+
 
 /* 
------------
+-----------------------------
 REVIEW BOX
------------
+----------------------------- 
 */
-.review{
-    padding:40px 10%;
-    border-top: 2px solid #b76e79; 
-    border-bottom: 2px solid #b76e79; 
+
+.review {
+    padding: 40px 10%;
+    border-top: 2px solid #b76e79;
+    border-bottom: 2px solid #b76e79;
+    color: #6f5b5b;
 }
 
-.review_box{
-    display:flex;
-    align-items:center;
-    gap:30px;
+.review_box {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 17px;
 }
 
-.review_box img{
-    width:120px;
-    border-radius:50%;
+.review_box img {
+    width: 120px;
+    border-radius: 50%;
 }
 
-.stars{
-    color:gold;
-    font-size:24px;
+.stars {
+    color: gold;
+    font-size: 24px;
 }
 
-/*
-----------------------
-SERVICES ON INDEX PAGE 
-----------------------
+
+/* 
+-----------------------------
+SERVICES ON INDEX PAGE
+----------------------------- 
 */
-.services{
-    padding:60px 10%;
-    text-align:center;
+
+.services {
+    padding: 60px 10%;
+    text-align: center;
 }
 
-.services h2{
-    font-size:42px;
-    margin-bottom:40px;
+.services h2 {
+    font-size: 40px;
+    color: #b76e79;
+    margin-bottom: 40px;
 }
 
-.service_grid{
-    display:grid; /* Sets up grid format */
-    grid-template-columns:repeat(3,1fr); /* Creates 3 columns, each taking up 1 fraction of available space */
-    gap:25px;
+.service_grid {
+    display: grid; /* Sets up grid format */
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
+    gap: 25px;
 }
 
-.card{
-    background:white;
-    border:2px solid #ddd;
-    border-radius:8px;
-    padding:25px;
-    transition:.3s;
+.card {
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    transition: .3s;
+}
+
+.card h3 {
+    color: #b76e79;
+    font-size: 24px;
+}
+
+.card p {
+    color: #6f5b5b;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 /* Card hover transition */
-.card:hover{
-    transform:translateY(-5px); /* Moves box up by 5px */
-    box-shadow:0 5px 15px rgba(0,0,0,.15); /* Adds a slight shadow */
+.card:hover {
+    transform: translateY(-5px); /* Moves box up by 5px */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .15); /* Adds a slight shadow */
 }

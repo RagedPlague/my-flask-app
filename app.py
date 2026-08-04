@@ -201,30 +201,68 @@ def booking():
 
 
 # Edit Booking Page
-@app.route("/edit_booking/<int:booking_id>")
+@app.route("/edit_booking/<int:booking_id>", methods=["GET", "POST"])
 def edit_booking(booking_id):
 
-    # Connect to the database
     conn = sqlite3.connect("beautify_with_jess.db")
     cursor = conn.cursor()
 
-    # Retrieve the selected booking
-    cursor.execute("""
-        SELECT *
-        FROM bookings
-        WHERE id = ?
-    """, (booking_id,))
+    if request.method == "POST":
 
-    booking = cursor.fetchone()
+        # Get updated booking details from the form
+        customer_name = request.form["customer_name"]
+        phone = request.form["phone"]
+        email = request.form["email"]
+        service = request.form["service"]
+        booking_date = request.form["booking_date"]
+        booking_time = request.form["booking_time"]
 
-    conn.close()
+        # Update the existing booking in the database
+        cursor.execute("""
+            UPDATE bookings
+            SET 
+                customer_name = ?,
+                phone = ?,
+                email = ?,
+                service = ?,
+                booking_date = ?,
+                booking_time = ?
+            WHERE id = ?
+        """, (
+            customer_name,
+            phone,
+            email,
+            service,
+            booking_date,
+            booking_time,
+            booking_id
+        ))
 
-    # Open the edit booking page
-    return render_template(
-        "edit_booking.html",
-        booking=booking,
-        services=services
-    )
+        conn.commit()
+        conn.close()
+
+        # Redirect to confirmation page after saving changes
+        return redirect(f"/confirmation/{booking_id}")
+
+
+    else:
+
+        # Retrieve the selected booking
+        cursor.execute("""
+            SELECT *
+            FROM bookings
+            WHERE id = ?
+        """, (booking_id,))
+
+        booking = cursor.fetchone()
+
+        conn.close()
+
+        return render_template(
+            "edit_booking.html",
+            booking=booking,
+            services=services
+        )
 
 
 # Update Booking
