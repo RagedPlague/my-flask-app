@@ -72,18 +72,20 @@
 
             <select id="service" name="service" required>
 
-                <!-- Loop through each service in 'services' in app.py and create a dropdown option for each one -->
+                <!-- Loop through each service stored in the 'services' dictionary in app.py
+                    and create a dropdown option for each service -->
                 {% for service in services %}
 
-                    <option value="{{ service }}">
-
+                    <!-- Create a dropdown option for the current service.
+                        If the customer clicked "Book Now" on the Services page,
+                        automatically select that service in the dropdown. -->
+                    <option value="{{ service }}" {% if service == selected_service %}selected{% endif %}>
                         {{ service }}
-
                     </option>
 
                 {% endfor %}
-
-            </select><br><br>
+                
+                </select><br><br>
 
             <label for="booking_date">Preferred Date:</label>
             <input type="date" id="booking_date" name="booking_date" required><br><br>

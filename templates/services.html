@@ -38,23 +38,22 @@
 
         <div class="service_card">
             <div class="service_image">
-                <img src="{{ url_for('static', filename='placeholder.jpg') }}" width="50" length="50">
+                <br>
+                <img src="{{ url_for('static', filename=service_images[service]) }}" width="200" height="200">
             </div>
 
             <div class="service_information">
                 <h3>{{ service }}</h3>
-                <p>
-                    Professional beauty treatment performed by Jess.
-                </p>
+                <p>{{ service_descriptions[service] }}</p>
             </div>
 
             <div class="service_price">
-                ${{ price }}
+                ${{ price }}<br><br>
             </div>
 
-            <div>
-                <a href="/booking">
-                    <button>Book Now</button>
+            <div class="book_now_button">
+                <a href="/booking?service={{ service }}">
+                    <button>Book Now</button><br><br>
                 </a>
             </div>
         </div>

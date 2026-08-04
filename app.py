@@ -17,6 +17,25 @@ services = {
     "Makeup": 90
 }
 
+service_images = {
+    "Classic Lashes": "classic_lash.jpg",
+    "Hybrid Lashes": "hybrid_lash.jpg",
+    "Volume Lashes": "volume_lash.jpg",
+    "Lash Lift": "lash_lift.jpg",
+    "Brow Wax": "brow_wax.jpg",
+    "Brow Tint": "brow_tint.jpg",
+    "Makeup": "makeup.jpg"
+}
+
+service_descriptions = {
+    "Classic Lashes": "A natural, elegant lash look for everyday wear.",
+    "Hybrid Lashes": "A blend of classic and volume lashes for extra fullness.",
+    "Volume Lashes": "A bold, dramatic style with maximum volume.",
+    "Lash Lift": "Lifts and curls your natural lashes for a longer-looking effect.",
+    "Brow Wax": "Shapes and defines your brows for a clean finish.",
+    "Brow Tint": "Enhances your brows with rich, long-lasting colour.",
+    "Makeup": "Professional makeup tailored for any occasion."
+}
 
 # Create the ENQUIRIES database and tables
 def init_db():
@@ -164,7 +183,7 @@ def index():
 # Services Page
 @app.route("/services")
 def services_page():
-    return render_template("services.html", services=services)
+    return render_template("services.html", services=services, service_images=service_images, service_descriptions=service_descriptions)
 
 
 # Gallery Page
@@ -176,10 +195,9 @@ def gallery():
 # Booking Page
 @app.route("/booking")
 def booking():
-    return render_template(
-        "booking.html",
-        services=services
-    )
+    selected_service = request.args.get("service")
+
+    return render_template("booking.html",services=services, selected_service=selected_service)
 
 
 # Edit Booking Page

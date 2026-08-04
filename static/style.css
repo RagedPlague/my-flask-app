@@ -75,7 +75,9 @@ DIVS AND CONTAINERS
     flex: 1; /* Allows the Enquiry section to take up an equal share of the available width */
 }
 
-
+.service_image {
+    border-top: 2px solid #b76e79
+}
 /*
 -----------
 IMAGES
@@ -160,8 +162,8 @@ REVIEW BOX
 */
 .review{
     padding:40px 10%;
-    border-top:2px solid #ddd;
-    border-bottom:2px solid #ddd;
+    border-top: 2px solid #b76e79; 
+    border-bottom: 2px solid #b76e79; 
 }
 
 .review_box{
