@@ -37,25 +37,37 @@ service_descriptions = {
     "Makeup": "Professional makeup tailored for any occasion."
 }
 
-# Create the ENQUIRIES database and tables
+
+# Combined init_db function for both databases
 def init_db():
+    # Enquiries
+    with sqlite3.connect('enquiries.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS enquiries (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL,
+                message TEXT NOT NULL
+            )
+        """)
+        conn.commit()
 
-    #Connect to database & make enquiries table
-    conn = sqlite3.connect('enquiries.db')
-    cursor = conn.cursor()
-
-    # Create the enquiries table if it does not already exist
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS enquiries (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT NOT NULL,
-            message TEXT NOT NULL
-        )
-    """)
-    conn.commit()
-    conn.close()
-
+    # Bookings
+    with sqlite3.connect('beautify_with_jess.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS bookings (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                customer_name TEXT NOT NULL,
+                phone TEXT NOT NULL,
+                email TEXT NOT NULL,
+                service TEXT NOT NULL,
+                booking_date TEXT NOT NULL,
+                booking_time TEXT NOT NULL
+            )
+        """)
+        conn.commit()
 
 # Saves an enquiry to the ENQUIRIES database
 @app.route('/submit', methods=['POST'])
@@ -69,16 +81,6 @@ def submit_enquiry():
     with sqlite3.connect('enquiries.db') as conn:
         cursor = conn.cursor()
         
-        #Create the table here so it exists
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS enquiries (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                email TEXT NOT NULL,
-                message TEXT NOT NULL
-            )
-        ''')
-        
         # Insert the data
         cursor.execute(
             "INSERT INTO enquiries (name, email, message) VALUES (?, ?, ?)",
@@ -89,29 +91,6 @@ def submit_enquiry():
     # Reloads webpage before adding text so the text stays on the webpage
     # without taking you to a seperate, blank webpage
     return render_template("contact.html", success="Thank you! Your enquiry has been received.")
-
-
-# Create the BOOKING database and tables
-def init_db():
-
-    # Connect to the database
-    conn = sqlite3.connect('beautify_with_jess.db')
-    cursor = conn.cursor()
-
-    # Create the bookings table if it does not already exist
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS bookings (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            customer_name TEXT NOT NULL,
-            phone TEXT NOT NULL,
-            email TEXT NOT NULL,
-            service TEXT NOT NULL,
-            booking_date TEXT NOT NULL,
-            booking_time TEXT NOT NULL
-        )
-    """)
-    conn.commit()
-    conn.close()
 
 
 # Saves a booking to the BOOKING database
@@ -264,50 +243,6 @@ def edit_booking(booking_id):
             services=services
         )
 
-
-# Update Booking
-@app.route("/update_booking/<int:booking_id>", methods=["POST"])
-def update_booking(booking_id):
-
-    # Retrieve the updated information
-    customer_name = request.form["customer_name"]
-    phone = request.form["phone"]
-    email = request.form["email"]
-    service = request.form["service"]
-    booking_date = request.form["booking_date"]
-    booking_time = request.form["booking_time"]
-
-    # Connect to the database
-    conn = sqlite3.connect("beautify_with_jess.db")
-    cursor = conn.cursor()
-
-    # Update the booking
-    cursor.execute("""
-        UPDATE bookings
-        SET 
-            -- Replaces [title] with the updated value (which uses '?' as a placeholder)
-            customer_name = ?,
-            phone = ?,
-            email = ?,
-            service = ?,
-            booking_date = ?,
-            booking_time = ?
-        WHERE id = ?
-    """, (
-        customer_name,
-        phone,
-        email,
-        service,
-        booking_date,
-        booking_time,
-        booking_id
-    ))
-
-    conn.commit()
-    conn.close()
-
-    # Return to the confirmation page
-    return redirect(f"/confirmation/{booking_id}")
 
 # Contact Page
 @app.route("/contact")
