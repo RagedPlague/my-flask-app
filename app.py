@@ -217,7 +217,7 @@ def edit_booking(booking_id):
 
     if request.method == "POST":
 
-        # Get updated booking details from the form
+        # Get the updated booking details from the form
         customer_name = request.form["customer_name"]
         phone = request.form["phone"]
         email = request.form["email"]
@@ -225,10 +225,43 @@ def edit_booking(booking_id):
         booking_date = request.form["booking_date"]
         booking_time = request.form["booking_time"]
 
+        # Check whether another booking already uses this date and time
+        cursor.execute("""
+            SELECT id
+            FROM bookings
+            WHERE booking_date = ?
+            AND booking_time = ?
+            AND id != ?
+        """, (booking_date, booking_time, booking_id))
+
+        existing_booking = cursor.fetchone()
+
+        # If another booking already exists at this time
+        if existing_booking:
+
+            # Close the database connection
+            conn.close()
+
+            # Return to the edit page with an error message
+            return render_template(
+                "edit_booking.html",
+                booking=(
+                    booking_id,
+                    customer_name,
+                    phone,
+                    email,
+                    service,
+                    booking_date,
+                    booking_time
+                ),
+                services=services,
+                error="Sorry, that appointment time is already booked. Please choose another time."
+            )
+
         # Update the existing booking in the database
         cursor.execute("""
             UPDATE bookings
-            SET 
+            SET
                 customer_name = ?,
                 phone = ?,
                 email = ?,
@@ -246,12 +279,14 @@ def edit_booking(booking_id):
             booking_id
         ))
 
+        # Save the changes
         conn.commit()
+
+        # Close the database connection
         conn.close()
 
-        # Redirect to confirmation page after saving changes
+        # Return to the confirmation page
         return redirect(f"/confirmation/{booking_id}")
-
 
     else:
 
@@ -266,11 +301,7 @@ def edit_booking(booking_id):
 
         conn.close()
 
-        return render_template(
-            "edit_booking.html",
-            booking=booking,
-            services=services
-        )
+        return render_template("edit_booking.html", booking=booking, services=services)
 
 
 # Contact Page
