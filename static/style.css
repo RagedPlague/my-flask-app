@@ -108,19 +108,20 @@ DIVS AND CONTAINERS
 
 .gallery{
     max-width:1200px;
-    margin:40px auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+    margin:40px auto; /* Adds 40px spacing above and below and centres the gallery */
+    display:grid; /* Uses CSS Grid to arrange the gallery cards */
+    grid-template-columns:repeat(3,1fr); /* Creates 3 equal-width columns */
     gap:35px;
     padding:0 20px;
 }
 
+
 .gallery-card{
     background:white;
     border:1px solid #d6d6d6;
-    border-radius:5px;
-    overflow:hidden;
-    box-shadow:0 2px 5px rgba(0,0,0,.08);
+    border-radius:5px; /* Slightly rounds the corners of the card */
+    overflow:hidden; /* Prevents content from extending outside the rounded corners */
+    box-shadow:0 2px 5px rgba(0,0,0,.08); /* Adds a subtle shadow around the card */
 }
 
 .gallery-card img{

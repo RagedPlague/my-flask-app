@@ -97,7 +97,7 @@ def submit_enquiry():
 @app.route("/add_booking", methods=["POST"])
 def add_booking():
 
-    # Retrieve information entered by the customer
+    # Retrieve the information entered by the customer
     customer_name = request.form["customer_name"]
     phone = request.form["phone"]
     email = request.form["email"]
@@ -109,24 +109,53 @@ def add_booking():
     conn = sqlite3.connect("beautify_with_jess.db")
     cursor = conn.cursor()
 
-    # Insert the booking into the bookings table
-    cursor.execute(
-        """INSERT INTO bookings
-        (customer_name, phone, email, service, booking_date, booking_time)
-        VALUES (?, ?, ?, ?, ?, ?)""",
-        (customer_name, phone, email, service, booking_date, booking_time)
-    )
+    # Check whether the selected date and time are already booked
+    cursor.execute("""
+        SELECT id
+        FROM bookings
+        WHERE booking_date = ? AND booking_time = ?
+    """, (booking_date, booking_time))
 
-    # Save changes
+    existing_booking = cursor.fetchone()
+
+    # If a booking already exists at this date and time
+    if existing_booking:
+
+        # Close the database connection
+        conn.close()
+
+        # Return to the booking page with an error message
+        return render_template(
+            "booking.html",
+            services=services,
+            selected_service=service,
+            error="Sorry, that appointment time is already booked. Please choose another time."
+        )
+
+    # Insert the new booking because the time is available
+    cursor.execute("""
+        INSERT INTO bookings
+        (customer_name, phone, email, service, booking_date, booking_time)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (
+        customer_name,
+        phone,
+        email,
+        service,
+        booking_date,
+        booking_time
+    ))
+
+    # Save the new booking to the database
     conn.commit()
 
-    # Get the ID of the booking that was just added
+    # Get the ID of the new booking
     booking_id = cursor.lastrowid
 
     # Close the database connection
     conn.close()
 
-    # Redirect to the confirmation page for this booking, using ID from database
+    # Send the customer to their confirmation page
     return redirect(f"/confirmation/{booking_id}")
 
 
